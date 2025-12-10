@@ -1,0 +1,22 @@
+[
+  {"id":"1","name":"Morava – Břest – hluboká jáma","lat":49.3178,"lon":17.4491,"depth":"3.5–5.2 m","species":"sumec, candát, kapr","notes":"hluboká jáma za ostrou zatáčkou"},
+  {"id":"2","name":"Morava – Plešovec – tišina za ohybem","lat":49.3082,"lon":17.4219,"depth":"2.2–3.8 m","species":"štika, bolen","notes":"zátoka za meandrem, dobré pro vláčku"},
+  {"id":"3","name":"Moštěnka – Kotojedy – tůňka u břehu","lat":49.3211,"lon":17.4302,"depth":"1.4–2.7 m","species":"okoun, štika","notes":"rákosí, ideální pro malé gumy"},
+  {"id":"4","name":"Moštěnka – nad splavem Kroměříž","lat":49.3149,"lon":17.4099,"depth":"1.8–2.9 m","species":"pstruh, tloušť","notes":"proudové přechody pod splavem"},
+  {"id":"5","name":"Bečva – soutok s Moravou","lat":49.3105,"lon":17.3992,"depth":"1.8–3.2 m","species":"kapr, bolen","notes":"soutok=potrava, dobré pro velké kusy"},
+  {"id":"6","name":"Bečva – Žlutava – stará hrana","lat":49.2754,"lon":17.4778,"depth":"2.6–4.1 m","species":"candát","notes":"kamenné hrany, struktura dna"},
+  {"id":"7","name":"Morava – Kvasice – hluboký proud","lat":49.2668,"lon":17.4162,"depth":"3–4.5 m","species":"sumec","notes":"proudná stopa, ideál pro větší nástrahy"},
+  {"id":"8","name":"Morava – Lubná – úsek za mostem","lat":49.2881,"lon":17.3699,"depth":"2.1–3.3 m","species":"kapr","notes":"hlubší žlaby pod mostem"},
+  {"id":"9","name":"Morava – Chropyně – u rákosí","lat":49.3564,"lon":17.4672,"depth":"1.2–2.1 m","species":"lín, kapr","notes":"vegetace + zátoka"},
+  {"id":"10","name":"Moštěnka – Záhlinice – tišiny","lat":49.3245,"lon":17.5011,"depth":"1.1–2.0 m","species":"cejn, plotice","notes":"klidné rameno, dobré pro feeder"},
+  {"id":"11","name":"Bečva – Troubky – vývařiště","lat":49.4531,"lon":17.3577,"depth":"2.8–4.9 m","species":"candát, sumec","notes":"hluboké prohlubně, noční lov výhodou"},
+  {"id":"12","name":"Bečva – Osek – tichá kapsa","lat":49.3642,"lon":17.5178,"depth":"2–3 m","species":"kapr","notes":"klidné břehy, dobré pro dlouhé vyvážení"},
+  {"id":"13","name":"Morava – Pravčice – za ohybem","lat":49.3049,"lon":17.4971,"depth":"2.5–3.1 m","species":"štika","notes":"spojené rákosí a kamenité dno"},
+  {"id":"14","name":"Morava – Spytihněv – hloubka","lat":49.1578,"lon":17.4533,"depth":"3.8–6.2 m","species":"sumec trofejní","notes":"velké hloubky, loďka/echo doporučeno"},
+  {"id":"15","name":"Bečva – Hovězí – kamenitý úsek","lat":49.3501,"lon":17.3654,"depth":"1.6–2.7 m","species":"pstruh","notes":"okraj kamenitých polí, dobré pro muškaření/přívlač"},
+  {"id":"16","name":"Moštěnka – Lukoveček – klidná voda","lat":49.3202,"lon":17.5412,"depth":"1.0–1.7 m","species":"tloušť","notes":"mělké zóny, dobré na lehké návazce"},
+  {"id":"17","name":"Morava – Kojetín – štěrkáčové hrany","lat":49.3477,"lon":17.3309,"depth":"2.3–3.7 m","species":"kapr","notes":"štěrkové hrany a prohlubně"},
+  {"id":"18","name":"Bečva – Tovačov – zátočina","lat":49.4302,"lon":17.2951,"depth":"2.7–4.4 m","species":"candát","notes":"zátočiny s vegetací"},
+  {"id":"19","name":"Moštěnka – Horní Moštěnice – proluka","lat":49.3911,"lon":17.3991,"depth":"1.9–2.6 m","species":"štika","notes":"místní rákosí, klidné sekce"},
+  {"id":"20","name":"Morava – Nedakonice – napájecí kanál","lat":49.0694,"lon":17.4048,"depth":"2.2–3.9 m","species":"sumec, bolen","notes":"kanálové proudy a hlubiny"}
+]
