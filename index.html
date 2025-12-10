@@ -1,86 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Fishing Map — Kroměříž & Bečva</title>
-  <link rel="manifest" href="manifest.webmanifest"/>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <title>Fishing Map</title>
+
   <style>
-    html,body,#map { height:100%; margin:0; padding:0; font-family:Arial,Helvetica,sans-serif; }
-    #sidebar { position:absolute; left:10px; top:10px; z-index:1000; background:#fff; padding:8px; border-radius:6px; max-height:85vh; overflow:auto; width:300px; box-shadow:0 2px 8px rgba(0,0,0,0.2); }
-    .spot { padding:6px; border-bottom:1px solid #eee; cursor:pointer; }
-    .spot:hover { background:#f6f6f6; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+    #map { height: 100%; width: 100%; }
   </style>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
+
 <body>
-<div id="sidebar"><h3>Fishing Map — Top lokality</h3><div id="list">Načítám...</div><p><a id="gpxLink" href="#">Stáhnout GPX</a> · <a id="kmlLink" href="#">Stáhnout KML</a></p></div>
-<div id="map"></div>
+  <div id="map"></div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
-  const map = L.map('map').setView([49.31,17.42], 11);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19, attribution:'© OpenStreetMap' }).addTo(map);
+  <script>
+    // Inicializace mapy
+    var map = L.map('map').setView([49.297, 17.393], 12);
 
-  async function loadPoints() {
-    try {
-      const res = await fetch('data/datapoints.json');
-      const points = await res.json();
-      const list = document.getElementById('list');
-      list.innerHTML = '';
-      const markers = [];
-      points.forEach(p => {
-        const marker = L.marker([p.lat, p.lon]).addTo(map);
-        marker.bindPopup(`<b>${p.name}</b><br/><b>Druhy:</b> ${p.species}<br/><b>Hloubka:</b> ${p.depth}<br/><div style="margin-top:6px"><b>Poznámky:</b> ${p.notes}</div>`);
-        markers.push(marker);
-        const el = document.createElement('div'); el.className='spot';
-        el.innerHTML = `<b>${p.name}</b><div style="font-size:12px;color:#333"><b>Hloubka:</b> ${p.depth} · <b>Druhy:</b> ${p.species}</div>`;
-        el.onclick = () => { map.setView([p.lat,p.lon],14); marker.openPopup(); };
-        list.appendChild(el);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+    }).addTo(map);
+
+    // Načtení bodů
+    fetch("Datapoints.json")
+      .then(res => res.json())
+      .then(data => {
+        data.forEach(p => {
+          L.marker([p.lat, p.lng])
+           .addTo(map)
+           .bindPopup(`<b>${p.name}</b><br>${p.desc}`);
+        });
       });
+  </script>
 
-      // create simple GPX/KML links by synthesizing files on the fly
-      const gpx = createGPX(points);
-      const kml = createKML(points);
-      const gpxBlob = new Blob([gpx], {type:'application/gpx+xml'});
-      const kmlBlob = new Blob([kml], {type:'application/vnd.google-earth.kml+xml'});
-      document.getElementById('gpxLink').href = URL.createObjectURL(gpxBlob);
-      document.getElementById('gpxLink').download = 'datapoints.gpx';
-      document.getElementById('kmlLink').href = URL.createObjectURL(kmlBlob);
-      document.getElementById('kmlLink').download = 'datapoints.kml';
-
-    } catch (e) {
-      document.getElementById('list').innerText = 'Chyba při načítání dat: ' + e.message;
-      console.error(e);
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
     }
-  }
-
-  function createGPX(points) {
-    let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="FishingMap">\n`;
-    points.forEach(p => {
-      const desc = `Revír: ${p.notes} | Druhy: ${p.species} | Hloubka: ${p.depth}`;
-      xml += `  <wpt lat="${p.lat}" lon="${p.lon}"><name>${p.name}</name><desc>${desc}</desc></wpt>\n`;
-    });
-    xml += '</gpx>';
-    return xml;
-  }
-
-  function createKML(points) {
-    let k = `<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2"><Document>`;
-    points.forEach(p => {
-      const desc = `<b>Druhy:</b> ${p.species}<br/><b>Hloubka:</b> ${p.depth}<br/>${p.notes}`;
-      k += `<Placemark><name>${p.name}</name><description><![CDATA[${desc}]]></description><Point><coordinates>${p.lon},${p.lat},0</coordinates></Point></Placemark>`;
-    });
-    k += `</Document></kml>`;
-    return k;
-  }
-
-  loadPoints();
-
-  // register service worker if available
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').then(()=>console.log('SW registered')).catch(e=>console.warn('SW failed', e));
-  }
-</script>
+  </script>
 </body>
 </html>
